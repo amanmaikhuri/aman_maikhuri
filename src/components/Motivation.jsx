@@ -10,7 +10,6 @@ const Motivation = () => {
       fetch('https://dummyjson.com/quotes')
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         const randomIndex = Math.floor(Math.random() * data.quotes.length);
         setMessage(data.quotes[randomIndex].quote);
         setAuthor(data.quotes[randomIndex].author);

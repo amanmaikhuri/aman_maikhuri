@@ -1,5 +1,5 @@
 // src/pages/NotFound.jsx
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const ErrorPage = () => {
   return (
