@@ -17,7 +17,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <main className="md:pt-6"> {/* padding so content doesn’t hide under header */}
+      <main className="pt-2 md:pt-6"> {/* padding so content doesn’t hide under header */}
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/about" element={<AboutSection />} />

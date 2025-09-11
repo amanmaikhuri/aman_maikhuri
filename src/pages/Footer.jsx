@@ -10,7 +10,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full bg-gradient-to-b from-gray-900 to-black text-gray-300">
+    <footer className="w-full bg-gradient-to-b from-gray-900 to-black text-gray-300 mt-2">
       {/* Back to top */}
       <div
         onClick={scrollToTop}

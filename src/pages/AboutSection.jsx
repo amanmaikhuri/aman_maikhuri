@@ -1,8 +1,11 @@
+import { Link } from "react-router";
+
 const AboutSection = () => {
+
   return (
     <div className="max-w-[1080px] mx-auto px-4 py-2 text-md leading-relaxed">
       <h1 className="text-2xl font-bold mb-4">About Me</h1>
-      <div className="space-y-4">
+      <div className="space-y-2 mb-2">
         <p>
           Hi, I’m <span className="font-semibold">Aman</span> — a self-taught developer, 
           problem-solver, and dreamer with an unshakable curiosity for technology and 
@@ -32,9 +35,9 @@ const AboutSection = () => {
           and never settling for “just enough.”
         </p>
       </div>
-      <button className="mt-6 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+      <Link to= {"https://linkedin.com/in/aman-maikhuri-622582263"} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
         Connect Now
-      </button>
+      </Link>
     </div>
   )
 }

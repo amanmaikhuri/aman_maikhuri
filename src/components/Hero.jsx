@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import img from "../assets/amanLogo.png";
+import { useNavigate } from "react-router";
+
+
 
 const Hero = () => {
+  const navigate = useNavigate();
 
   //function to handle download cv
   const handleDownload = () => {
@@ -55,7 +59,7 @@ const Hero = () => {
             className="px-4 py-2 bg-[var(--success)] text-white rounded hover:bg-green-600 transition duration-300 w-fit">
               Download CV
             </button>
-            <button className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition duration-300 w-fit">
+            <button className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition duration-300 w-fit" onClick={() => {navigate("/projects")}}>
               Explore My Portfolio
             </button>
             </div>

@@ -47,7 +47,7 @@ const Header = () => {
           </button>
           <Link to="/" className="md:text-3xl font-bold text-green-500">
           <img src={logo} alt="aman maikhuri logo"
-          className="h-11 md:h-13 w-24 md:w-27 object-cover rounded-lg"/>
+          className="h-11 md:h-13 w-24 md:w-27 object-cover rounded-md"/>
             {/* Aman Maikhuree */}
           </Link> 
         </div>
