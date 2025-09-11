@@ -1,95 +1,94 @@
-Got it ✅ Here’s your **full README.md in a single document** — already polished and ready to drop into your repo:
+🌐 Aman Maikhuri – Developer Portfolio
 
----
 
-# 🌐 Amanzon Portfolio
 
-A modern **React + TailwindCSS portfolio website** built to showcase my journey as a **self-taught developer**, including my **skills, projects, certifications, and contact information**.
 
-This project is fully responsive, supports **light/dark mode**, and includes **smooth navigation** using React Router with a mobile-friendly sidebar.
 
----
 
-## 🚀 Features
 
-* 📌 **Multiple Pages**: Home, About, Skills, Projects, Certifications, Contact
-* 🎨 **Modern UI** built with TailwindCSS
-* 🌙 **Dark / Light mode toggle**
-* 📱 **Responsive Design** with mobile sidebar navigation
-* 🔗 **Social Media Integration** (Facebook, Instagram, GitHub, LinkedIn)
-* 🧭 **React Router Navigation** with active link highlighting
-* ⚡ **Optimized Performance** (lazy loaded images, clean code structure)
 
----
+A modern React + TailwindCSS portfolio website showcasing my journey as a self-taught Full Stack Developer.
+It highlights my skills, projects, certifications, and achievements, with a strong focus on UI/UX, performance, and responsiveness.
 
-## 🛠️ Tech Stack
+🔗 Live Demo → aman-maikhuri.vercel.app
 
-* **React** – Frontend framework
-* **React Router DOM** – Page routing
-* **TailwindCSS** – Styling and responsiveness
-* **React Icons** – Icon set (social media + UI icons)
+🚀 Features
 
----
+📌 Multiple Pages → Home, About, Skills, Projects, Certifications, Contact
 
-## 📂 Project Structure
+🎨 Modern UI/UX with TailwindCSS
 
-```
+🌙 Dark / Light Mode toggle (saved in local storage)
+
+📱 Responsive Design + mobile sidebar navigation
+
+🔗 Social Media Integration (GitHub, LinkedIn, Instagram, etc.)
+
+🧭 Smooth Navigation with React Router DOM
+
+⚡ Optimized Performance → lazy loaded assets, SEO meta tags, and clean code
+
+🛠️ Tech Stack
+
+React → Frontend library
+
+React Router DOM → Client-side routing
+
+TailwindCSS → Styling & responsiveness
+
+React Icons → Modern icons set
+
+Firebase (optional expansion) → Authentication, Hosting, Storage
+
+📂 Project Structure
 src/
-│── assets/            # Images, logos
-│── components/        # Reusable UI components (Header, Footer, Sidebar, etc.)
-│── pages/             # Individual pages (Home, About, Skills, Projects, Certifications, Contact)
+│── assets/            # Images, logos, icons
+│── components/        # Reusable UI components (Navbar, Footer, Sidebar, etc.)
+│── pages/             # Pages (Home, About, Skills, Projects, Certifications, Contact)
 │── App.jsx            # Main app file with routing
-│── index.js           # Entry point
-```
+│── main.jsx           # React DOM entry point
 
----
+⚙️ Installation & Setup
 
-## ⚙️ Installation & Setup
+Clone the repository
 
-1. **Clone the repository**
+git clone https://github.com/amanmaikhuri/portfolio.git
+cd portfolio
 
-   ```bash
-   git clone https://github.com/your-username/amanzon-portfolio.git
-   cd amanzon-portfolio
-   ```
 
-2. **Install dependencies**
+Install dependencies
 
-   ```bash
-   npm install
-   ```
+npm install
 
-3. **Run the development server**
 
-   ```bash
-   npm run dev
-   ```
+Run the development server
 
-4. Open in browser → [http://localhost:5173](http://localhost:5173) (if using Vite)
+npm run dev
 
----
 
-## 📸 Screenshots
+Open in browser → http://localhost:5173
 
-### 🖥️ Desktop View
+📸 Screenshots
+🖥️ Desktop View
 
-![Desktop Screenshot](./screenshots/desktop.png)
+📱 Mobile Sidebar
 
-### 📱 Mobile Sidebar
+📬 Contact
 
-![Mobile Screenshot](./screenshots/mobile.png)
+📌 Portfolio → aman-maikhuri.vercel.app
 
----
+💻 GitHub → github.com/amanmaikhuri
 
-## 📬 Contact
+👔 LinkedIn → linkedin.com/in/aman-maikhuri-622582263
 
-* **Portfolio**: [](https://your-portfolio-link.com)
-* **GitHub**: [https://github.com/amanmaikhuri](https://github.com/amanmaikhuri)
-* **LinkedIn**: [https://linkedin.com/in/aman-maikhuri-622582263](https://linkedin.com/in/aman-maikhuri-622582263)
-* **Instagram**: [https://instagram.com/the_aman_effect](https://instagram.com/the_aman_effect)
+📸 Instagram → instagram.com/the_aman_effect
 
----
+🤝 Contributing
 
-## 📄 License
+Contributions, issues, and feature requests are welcome!
+Feel free to fork this repo and submit a pull request.
 
-This project is **open-source** and available under the [MIT License](LICENSE).
+📄 License
+
+This project is open-source under the MIT License
+.

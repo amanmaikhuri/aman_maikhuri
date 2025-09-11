@@ -1,6 +1,8 @@
-import { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // arrow icons
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+// images (keep your existing imports — paths should be correct)
 import infoysSpringboard from "../images/overviewOfInfosysSpringboard.jpg";
 import activeListening from "../images/activeListeningSkills.jpg";
 import bodyLanguage from "../images/understandingBodyLanguage.jpg";
@@ -38,59 +40,116 @@ const Certifications = () => {
     infoysSpringboard,
   ];
 
-  const [x, setX] = useState(0); // track scroll position
-  const cardWidth = 450; // adjust based on your img width + gap
+  const [x, setX] = useState(0); // translateX in px
+  const [bounds, setBounds] = useState({ minX: 0, maxX: 0 });
+  const containerRef = useRef(null); // visible viewport
+  const contentRef = useRef(null); // flex content (all cards)
+  const cardWidthRef = useRef(350); // fallback step
+
+  // clamp helper
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+  // compute widths & bounds (runs on mount and resize)
+  useEffect(() => {
+    const updateBounds = () => {
+      const container = containerRef.current;
+      const content = contentRef.current;
+      if (!container || !content) return;
+
+      const containerWidth = container.clientWidth;
+      const contentWidth = content.scrollWidth;
+
+      // compute gap from CSS (flex gap)
+      const computed = getComputedStyle(content);
+      const gapPx = parseFloat(computed.gap) || 16;
+
+      // derive card width from first child if available
+      const firstChild = content.children[0];
+      const cardW = firstChild ? firstChild.offsetWidth + gapPx : cardWidthRef.current;
+      cardWidthRef.current = cardW;
+
+      const minX = Math.min(0, containerWidth - contentWidth); // negative or 0
+      const maxX = 0;
+
+      // update bounds and clamp current x
+      setBounds({ minX, maxX });
+      setX((prev) => clamp(prev, minX, maxX));
+    };
+
+    updateBounds();
+    window.addEventListener("resize", updateBounds);
+    return () => window.removeEventListener("resize", updateBounds);
+  }, [certifications.length]);
 
   const handleNext = () => {
-    if (Math.abs(x) < (certifications.length - 2) * cardWidth) {
-      setX((prev) => prev - cardWidth);
-    }
+    // step by one card
+    const step = Math.round(cardWidthRef.current);
+    setX((prev) => clamp(prev - step, bounds.minX, bounds.maxX));
   };
 
   const handlePrev = () => {
-    if (x < 0) {
-      setX((prev) => prev + cardWidth);
-    }
+    const step = Math.round(cardWidthRef.current);
+    setX((prev) => clamp(prev + step, bounds.minX, bounds.maxX));
   };
 
-  return (
-    <div className="relative h-[20rem] md:h-[27rem] w-full overflow-hidden max-w-[1080px] mx-auto">
-      <h3 className="px-2 py-2 font-extrabold text-2xl">
-        Certifications
-      </h3>
+  const atLeftEdge = Math.abs(x) < 1; // near zero
+  const atRightEdge = Math.abs(x - bounds.minX) < 1; // near minX
 
-      {/* Arrow Left */}
+  return (
+    <div className="relative h-[20rem] md:h-[27rem] w-full overflow-hidden max-w-[1080px] mx-auto px-2">
+      <h3 className="py-2 font-extrabold text-2xl">Certifications</h3>
+
+      {/* Left arrow */}
       <button
         onClick={handlePrev}
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/40 hover:bg-black/60 p-2 rounded-full"
+        aria-label="Previous"
+        disabled={atLeftEdge}
+        className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/40 hover:bg-black/60 ${
+          atLeftEdge ? "opacity-40 pointer-events-none" : "opacity-100"
+        }`}
       >
         <ChevronLeft className="text-white" />
       </button>
 
-      {/* Arrow Right */}
+      {/* Right arrow */}
       <button
         onClick={handleNext}
-        className="absolute right-13 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-black/40 hover:bg-black/60 p-2 rounded-full"
+        aria-label="Next"
+        disabled={atRightEdge}
+        className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/40 hover:bg-black/60 ${
+          atRightEdge ? "opacity-40 pointer-events-none" : "opacity-100"
+        }`}
       >
         <ChevronRight className="text-white" />
       </button>
 
-      {/* Motion container */}
-      <motion.div
-        className="w-[83%] flex gap-4 absolute top-12 mt-4"
-        animate={{ x }}
-        transition={{ type: "spring", stiffness: 80, damping: 20 }}
+      {/* viewport wrapper that we measure */}
+      <div
+        ref={containerRef}
+        className="w-full h-full overflow-hidden relative mt-4"
+        aria-hidden={false}
       >
-        {certifications.map((cert, idx) => (
-          <img
-            key={idx}
-            src={cert}
-            alt={`Certification ${idx}`}
-            loading="lazy"
-            className="h-60 w-90 md:w-120 md:h-81 rounded-lg flex-shrink-0 border-t-5 border-[var(--mindful)]"
-          />
-        ))}
-      </motion.div>
+        {/* motion content (we measure this too) */}
+        <motion.div
+          ref={contentRef}
+          className="flex gap-4 items-start absolute left-0 top-0 pt-2"
+          animate={{ x }}
+          transition={{ type: "spring", stiffness: 80, damping: 20 }}
+          style={{ willChange: "transform" }}
+        >
+          {certifications.map((cert, idx) => (
+            <img
+              key={idx}
+              src={cert}
+              alt={`Certification ${idx + 1}`}
+              loading="lazy"
+              // keep consistent width so cardWidth detection is stable
+              // style={{ width: 350 }}
+              className="h-60 md:h-90 w-[350px] md:w-130 rounded-lg flex-shrink-0 border-t-4 border-[var(--mindful)] object-cover"
+            />
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 };

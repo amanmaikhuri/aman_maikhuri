@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router";
+import logo from '../assets/amanLogo.png'
 import {
   FaFacebookF,
   FaGithub,
@@ -44,9 +45,11 @@ const Header = () => {
           <button onClick={() => setIsOpen(true)} className="md:hidden text-2xl">
             <FaBars />
           </button>
-          <Link to="/" className="text-2xl md:text-3xl font-bold text-green-500">
-            amanzon
-          </Link>
+          <Link to="/" className="md:text-3xl font-bold text-green-500">
+          <img src={logo} alt="aman maikhuri logo"
+          className="h-11 md:h-13 w-24 md:w-27 object-cover rounded-lg"/>
+            {/* Aman Maikhuree */}
+          </Link> 
         </div>
 
         {/* Desktop Navigation */}

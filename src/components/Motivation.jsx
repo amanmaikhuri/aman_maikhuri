@@ -19,7 +19,7 @@ const Motivation = () => {
     }
   }, []);
   return (
-    <div className="px-4 bg-[var(--success)]-100 border-l-4 border-yellow-500 text-yellow-700">
+    <div className="max-w-[1080px] mx-auto px-4 bg-[var(--success)]-100 border-l-4 border-yellow-500 text-yellow-700">
       {message && <p className="motivation-message flex justify-center font-mono">{message} <br className="md:hidden"/>- {author}</p>}
     </div>
   )
